@@ -1,0 +1,24 @@
+{
+    "name": "phuxtil/splfileinfo",
+    "description": "SplFileInfo extension that allows to work with virtual (non existing) files",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^3",
+        "phpunit/phpunit": "^6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phuxtil\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhuxtilTests\\Functional\\": "tests/Functional"
+        }
+    }
+}
