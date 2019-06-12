@@ -271,28 +271,33 @@ class VirtualSplFileInfo extends \SplFileInfo
 
     public function toArray(): array
     {
+        return $this->infoToArray($this);
+    }
+
+    public function infoToArray(\SplFileInfo $info): array
+    {
         return [
-            'path' => $this->getPath(),
-            'filename' => $this->getFilename(),
-            'basename' => $this->getBasename(),
-            'pathname' => $this->getPathname(),
-            'extension' => $this->getExtension(),
-            'realPath' => $this->getRealPath(),
-            'aTime' => $this->getATime(),
-            'mTime' => $this->getMTime(),
-            'cTime' => $this->getCTime(),
-            'inode' => $this->getInode(),
-            'size' => $this->getSize(),
-            'perms' => $this->getPerms(),
-            'owner' => $this->getOwner(),
-            'group' => $this->getGroup(),
-            'type' => $this->getType(),
-            'writable' => $this->isWritable(),
-            'readable' => $this->isReadable(),
-            'executable' => $this->isExecutable(),
-            'file' => $this->isFile(),
-            'dir' => $this->isDir(),
-            'link' => $this->isLink(),
+            'path' => $info->getPath(),
+            'filename' => $info->getFilename(),
+            'basename' => $info->getBasename(),
+            'pathname' => $info->getPathname(),
+            'extension' => $info->getExtension(),
+            'realPath' => $info->getRealPath(),
+            'aTime' => $info->getATime(),
+            'mTime' => $info->getMTime(),
+            'cTime' => $info->getCTime(),
+            'inode' => $info->getInode(),
+            'size' => $info->getSize(),
+            'perms' => $info->getPerms(),
+            'owner' => $info->getOwner(),
+            'group' => $info->getGroup(),
+            'type' => $info->getType(),
+            'writable' => $info->isWritable(),
+            'readable' => $info->isReadable(),
+            'executable' => $info->isExecutable(),
+            'file' => $info->isFile(),
+            'dir' => $info->isDir(),
+            'link' => $info->isLink(),
         ];
     }
 
