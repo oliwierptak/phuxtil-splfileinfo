@@ -274,6 +274,24 @@ class VirtualSplFileInfo extends \SplFileInfo
         return $this;
     }
 
+    public function getFileInfo($class_name = null)
+    {
+        if ($class_name === null) {
+            $class_name = \get_class($this);
+        }
+
+        return parent::getFileInfo($class_name);
+    }
+
+    public function getPathInfo($class_name = null)
+    {
+        if ($class_name === null) {
+            $class_name = \get_class($this);
+        }
+
+        return parent::getPathInfo($class_name);
+    }
+
     public function isVirtual(): bool
     {
         return $this->type === 'virtual';
@@ -289,13 +307,14 @@ class VirtualSplFileInfo extends \SplFileInfo
         $this->perms = $data['perms'] ?? -1;
         $this->owner = $data['owner'] ?? -1;
         $this->group = $data['group'] ?? -1;
-        $this->type = $data['type'] ?? '';
-        $this->writable = $data['writable'] ?? false;
-        $this->readable = $data['readable'] ?? false;
-        $this->executable = $data['executable'] ?? false;
-        $this->file = $data['file'] ?? false;
-        $this->dir = $data['dir'] ?? false;
-        $this->link = $data['link'] ?? false;
+        $this->type = $data['type'] ?? 'virtual';
+        $this->writable = $data['writable'] ?? -1;
+        $this->readable = $data['readable'] ?? -1;
+        $this->executable = $data['executable'] ?? -1;
+        $this->file = $data['file'] ?? -1;
+        $this->dir = $data['dir'] ?? -1;
+        $this->link = $data['link'] ?? -1;
+        $this->linkTarget = $data['linkTarget'] ?? -1;
 
         return $this;
     }
@@ -327,6 +346,7 @@ class VirtualSplFileInfo extends \SplFileInfo
             'owner' => $info->getOwner(),
             'group' => $info->getGroup(),
             'type' => $info->getType(),
+            'linkTarget' => $info->getLinkTarget(),
             'writable' => $info->isWritable(),
             'readable' => $info->isReadable(),
             'executable' => $info->isExecutable(),

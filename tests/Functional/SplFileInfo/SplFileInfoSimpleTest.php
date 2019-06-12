@@ -154,7 +154,6 @@ class SplFileInfoSimpleTest extends TestCase
         $virtualFileInfo = new VirtualSplFileInfo(static::TEST_FILE_VIRTUAL);
 
         $this->comparePaths($fileInfo, $virtualFileInfo);
-        $this->comparePaths($fileInfo, $virtualFileInfo->getFileInfo());
         $this->comparePaths($fileInfo, $virtualFileInfo->getFileInfo(VirtualSplFileInfo::class));
         $this->assertInfoProperties($virtualFileInfo->getFileInfo(VirtualSplFileInfo::class));
     }
@@ -178,6 +177,7 @@ class SplFileInfoSimpleTest extends TestCase
         $this->assertEquals($expected->getBasename(), $actual->getBasename());
         $this->assertEquals($expected->getBasename('.txt'), $actual->getBasename('.txt'));
         $this->assertEquals($expected->getPathname(), $actual->getPathname());
+        $this->assertEquals(-1, $actual->getLinkTarget());
     }
 
     protected function assertInfoProperties(SplFileInfo $fileInfo)
