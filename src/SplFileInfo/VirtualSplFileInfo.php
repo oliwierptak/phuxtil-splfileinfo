@@ -321,4 +321,9 @@ class VirtualSplFileInfo extends \SplFileInfo
 
         return $this;
     }
+
+    public function isVirtual(): bool
+    {
+        return $this->type === 'virtual';
+    }
 }
