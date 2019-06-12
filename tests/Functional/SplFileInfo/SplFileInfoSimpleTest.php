@@ -182,7 +182,7 @@ class SplFileInfoSimpleTest extends TestCase
 
     protected function assertInfoProperties(SplFileInfo $fileInfo)
     {
-        $this->assertEquals(0, $fileInfo->getPerms());
+        $this->assertEquals(-1, $fileInfo->getPerms());
         $this->assertEquals(-1, $fileInfo->getInode());
         $this->assertEquals(-1, $fileInfo->getSize());
         $this->assertEquals(-1, $fileInfo->getOwner());
@@ -190,17 +190,17 @@ class SplFileInfoSimpleTest extends TestCase
         $this->assertEquals(-1, $fileInfo->getATime());
         $this->assertEquals(-1, $fileInfo->getMTime());
         $this->assertEquals(-1, $fileInfo->getCTime());
+
         $this->assertEquals('virtual', $fileInfo->getType());
-
         $this->assertFalse($fileInfo->getRealPath());
-        $this->assertFalse($fileInfo->getLinkTarget());
 
-        $this->assertFalse($fileInfo->isWritable());
-        $this->assertFalse($fileInfo->isReadable());
-        $this->assertFalse($fileInfo->isExecutable());
-        $this->assertFalse($fileInfo->isFile());
-        $this->assertFalse($fileInfo->isDir());
-        $this->assertFalse($fileInfo->isLink());
-        $this->assertFalse($fileInfo->isLink());
+        $this->assertEquals(-1, $fileInfo->getLinkTarget());
+        $this->assertEquals(-1, $fileInfo->isWritable());
+        $this->assertEquals(-1, $fileInfo->isReadable());
+        $this->assertEquals(-1, $fileInfo->isExecutable());
+        $this->assertEquals(-1, $fileInfo->isFile());
+        $this->assertEquals(-1, $fileInfo->isDir());
+        $this->assertEquals(-1, $fileInfo->isLink());
+        $this->assertEquals(-1, $fileInfo->isLink());
     }
 }

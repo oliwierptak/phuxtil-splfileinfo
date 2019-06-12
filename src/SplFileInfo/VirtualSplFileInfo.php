@@ -32,7 +32,7 @@ class VirtualSplFileInfo extends \SplFileInfo
     /**
      * @var mixed
      */
-    protected $perms = 0;
+    protected $perms = -1;
 
     /**
      * @var int
@@ -52,37 +52,37 @@ class VirtualSplFileInfo extends \SplFileInfo
     /**
      * @var bool
      */
-    protected $writable = false;
+    protected $writable = -1;
 
     /**
      * @var bool
      */
-    protected $readable = false;
+    protected $readable = -1;
 
     /**
      * @var bool
      */
-    protected $executable = false;
+    protected $executable = -1;
 
     /**
      * @var bool
      */
-    protected $file = false;
+    protected $file = -1;
 
     /**
      * @var bool
      */
-    protected $dir = false;
+    protected $dir = -1;
 
     /**
      * @var bool
      */
-    protected $link = false;
+    protected $link = -1;
 
     /**
      * @var string
      */
-    protected $linkTarget = false;
+    protected $linkTarget = -1;
 
     public function getLinkTarget()
     {
