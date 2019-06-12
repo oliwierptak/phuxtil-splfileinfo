@@ -269,12 +269,42 @@ class VirtualSplFileInfo extends \SplFileInfo
         return $this;
     }
 
-    public function toArray(): array
+    public function isVirtual(): bool
     {
-        return $this->infoToArray($this);
+        return $this->type === 'virtual';
     }
 
-    public function infoToArray(\SplFileInfo $info): array
+    public function fromArray(array $data)
+    {
+        $this->aTime = $data['aTime'] ?? -1;
+        $this->mTime = $data['mTime'] ?? -1;
+        $this->cTime = $data['cTime'] ?? -1;
+        $this->inode = $data['inode'] ?? -1;
+        $this->size = $data['size'] ?? -1;
+        $this->perms = $data['perms'] ?? -1;
+        $this->owner = $data['owner'] ?? -1;
+        $this->group = $data['group'] ?? -1;
+        $this->type = $data['type'] ?? '';
+        $this->writable = $data['writable'] ?? false;
+        $this->readable = $data['readable'] ?? false;
+        $this->executable = $data['executable'] ?? false;
+        $this->file = $data['file'] ?? false;
+        $this->dir = $data['dir'] ?? false;
+        $this->link = $data['link'] ?? false;
+
+        return $this;
+    }
+
+    public function toArray(\SplFileInfo $info = null): array
+    {
+        if ($info === null) {
+            $info = $this;
+        }
+
+        return $this->infoToArray($info);
+    }
+
+    protected function infoToArray(\SplFileInfo $info): array
     {
         return [
             'path' => $info->getPath(),
@@ -299,31 +329,5 @@ class VirtualSplFileInfo extends \SplFileInfo
             'dir' => $info->isDir(),
             'link' => $info->isLink(),
         ];
-    }
-
-    public function fromArray(array $data)
-    {
-        $this->aTime = $data['aTime'] ?? -1;
-        $this->mTime = $data['mTime'] ?? -1;
-        $this->cTime = $data['cTime'] ?? -1;
-        $this->inode = $data['inode'] ?? -1;
-        $this->size = $data['size'] ?? -1;
-        $this->perms = $data['perms'] ?? -1;
-        $this->owner = $data['owner'] ?? -1;
-        $this->group = $data['group'] ?? -1;
-        $this->type = $data['type'] ?? '';
-        $this->writable = $data['writable'] ?? false;
-        $this->readable = $data['readable'] ?? false;
-        $this->executable = $data['executable'] ?? false;
-        $this->file = $data['file'] ?? false;
-        $this->dir = $data['dir'] ?? false;
-        $this->link = $data['link'] ?? false;
-
-        return $this;
-    }
-
-    public function isVirtual(): bool
-    {
-        return $this->type === 'virtual';
     }
 }
