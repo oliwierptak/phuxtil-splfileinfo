@@ -89,6 +89,11 @@ class VirtualSplFileInfo extends \SplFileInfo
         return $this->linkTarget;
     }
 
+    public function setLinkTarget(string $linkTarget)
+    {
+        $this->linkTarget = $linkTarget;
+    }
+
     public function getATime()
     {
         return $this->aTime;
