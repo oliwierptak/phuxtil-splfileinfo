@@ -277,7 +277,7 @@ class VirtualSplFileInfo extends \SplFileInfo
     public function getFileInfo($class_name = null)
     {
         if ($class_name === null) {
-            $class_name = \get_class($this);
+            $class_name = self::class;
         }
 
         return parent::getFileInfo($class_name);
@@ -286,7 +286,7 @@ class VirtualSplFileInfo extends \SplFileInfo
     public function getPathInfo($class_name = null)
     {
         if ($class_name === null) {
-            $class_name = \get_class($this);
+            $class_name = self::class;
         }
 
         return parent::getPathInfo($class_name);
@@ -346,7 +346,7 @@ class VirtualSplFileInfo extends \SplFileInfo
             'owner' => $info->getOwner(),
             'group' => $info->getGroup(),
             'type' => $info->getType(),
-            'linkTarget' => $info->getLinkTarget(),
+            'linkTarget' => $info->isLink() ? $info->getLinkTarget() : -1,
             'writable' => $info->isWritable(),
             'readable' => $info->isReadable(),
             'executable' => $info->isExecutable(),
