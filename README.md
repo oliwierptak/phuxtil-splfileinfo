@@ -236,6 +236,7 @@ The file does not have to exist for those methods to work.
 Properties with setters:
 
 ```
+realPath
 aTime
 mTime
 cTime
