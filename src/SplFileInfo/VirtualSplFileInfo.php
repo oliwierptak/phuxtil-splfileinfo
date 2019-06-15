@@ -82,7 +82,24 @@ class VirtualSplFileInfo extends \SplFileInfo
     /**
      * @var string
      */
+    protected $realPath = -1;
+
+    /**
+     * @var string
+     */
     protected $linkTarget = -1;
+
+    public function getRealPath(): string
+    {
+        return $this->realPath;
+    }
+
+    public function setRealPath(string $realPath): self
+    {
+        $this->realPath = $realPath;
+
+        return $this;
+    }
 
     public function getLinkTarget()
     {
@@ -297,6 +314,12 @@ class VirtualSplFileInfo extends \SplFileInfo
         return $this->type === 'virtual';
     }
 
+    public function fromSplFileInfo(\SplFileInfo $info)
+    {
+        $data = $this->infoToArray($info);
+        $this->fromArray($data);
+    }
+
     public function fromArray(array $data)
     {
         $this->aTime = $data['aTime'] ?? -1;
@@ -314,18 +337,15 @@ class VirtualSplFileInfo extends \SplFileInfo
         $this->file = $data['file'] ?? -1;
         $this->dir = $data['dir'] ?? -1;
         $this->link = $data['link'] ?? -1;
-        $this->linkTarget = $data['linkTarget'] ?? -1;
+        $this->realPath = $this->isLink() ? $data['realPath'] : $this->getPathname();
+        $this->linkTarget = $this->isLink() ? $data['linkTarget'] : -1;
 
         return $this;
     }
 
-    public function toArray(\SplFileInfo $info = null): array
+    public function toArray(): array
     {
-        if ($info === null) {
-            $info = $this;
-        }
-
-        return $this->infoToArray($info);
+        return $this->infoToArray($this);
     }
 
     protected function infoToArray(\SplFileInfo $info): array
@@ -336,7 +356,7 @@ class VirtualSplFileInfo extends \SplFileInfo
             'basename' => $info->getBasename(),
             'pathname' => $info->getPathname(),
             'extension' => $info->getExtension(),
-            'realPath' => $info->getRealPath(),
+            'realPath' => $info->isLink() ? $info->getRealPath() : $info->getPathname(),
             'aTime' => $info->getATime(),
             'mTime' => $info->getMTime(),
             'cTime' => $info->getCTime(),

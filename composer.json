@@ -1,6 +1,6 @@
 {
     "name": "phuxtil/splfileinfo",
-    "description": "SplFileInfo extension that allows to work with virtual (non existing) files",
+    "description": "SplFileInfo compatible implementation that allows to work with virtual (non existing) files",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "stable",
