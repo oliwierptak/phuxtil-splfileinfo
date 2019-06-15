@@ -34,13 +34,13 @@ $virtualInfo->getPath();      # /tmp/not-yet
 $virtualInfo->isDir();        # -1
 $virtualInfo->getSize();      # -1
 $virtualInfo->isExecutable(); # -1
+...
 
 // virtual resource has been created 
 @mkdir($path);
 
 // refresh virutal file info
-$splInfo = new SplFileInfo($path);
-$virtualInfo->fromSplFileInfo($splInfo);
+$virtualInfo->fromSplFileInfo(new SplFileInfo($path));
 ```
 
 ```
