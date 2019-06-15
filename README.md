@@ -15,7 +15,7 @@ Possible use cases:
 ### Installation
 
 ```bash
-composer phuxtil/splfileinfo 
+composer require phuxtil/splfileinfo 
 ```
 
 ### Usage
@@ -100,7 +100,7 @@ $virtualInfo = Phuxtil\SplFileInfo\VirtualSplFileInfo {
 
 Returns true if the and does not really exist. 
 
-_Note: isReadable(), isFile(),... etc, can still be returning true, even if the resource does not exist._
+_Note: isReadable(), isFile(),... etc, can return true, even if the resource does not exist._
 
 
 #### fromSplFileInfo(\SplFileInfo $info) 
@@ -108,7 +108,7 @@ _Note: isReadable(), isFile(),... etc, can still be returning true, even if the 
 ``` php
 $path = '/tmp/not-yet/existing-path';
 $virtualInfo = new VirtualSplFileInfo($path);
-dump($virtualInfo);
+
 @mkdir($path, 0777, true);
 
 $splInfo = new SplFileInfo($path);
@@ -156,7 +156,7 @@ $data = $info->toArray();
   "basename" => "existing-path"
   "pathname" => "/tmp/not-yet/existing-path"
   "extension" => ""
-  "realPath" => false
+  "realPath" => "/tmp/not-yet/existing-path"
   "aTime" => -1
   "mTime" => -1
   "cTime" => -1
@@ -208,7 +208,7 @@ $info->fromArray(
   "basename" => "existing-path"
   "pathname" => "/tmp/not-yet/existing-path"
   "extension" => ""
-  "realPath" => false
+  "realPath" => "/tmp/not-yet/existing-path"
   "aTime" => 123
   "mTime" => 456
   "cTime" => 789

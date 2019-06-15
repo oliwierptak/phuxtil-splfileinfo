@@ -58,8 +58,8 @@ class SplFileInfoSimpleTest extends TestCase
 
     public function test_setters_and_getters()
     {
-        $virtualFileInfo = new VirtualSplFileInfo('/invalid.foo');
-        $fileInfo = new SplFileInfo('/invalid.foo');
+        $virtualFileInfo = new VirtualSplFileInfo('/tmp/invalid.foo');
+        $fileInfo = new SplFileInfo('/tmp/invalid.foo');
 
         $this->comparePaths($fileInfo, $virtualFileInfo);
 
@@ -108,7 +108,7 @@ class SplFileInfoSimpleTest extends TestCase
 
     public function test_toArray()
     {
-        $virtualFileInfo = new VirtualSplFileInfo('/non/existing-path');
+        $virtualFileInfo = new VirtualSplFileInfo('/tmp/non/existing-path');
 
         $data = $virtualFileInfo->toArray();
 
@@ -139,7 +139,7 @@ class SplFileInfoSimpleTest extends TestCase
 
     public function test_fromArray()
     {
-        $virtualFileInfo = new VirtualSplFileInfo('/non/existing-path');
+        $virtualFileInfo = new VirtualSplFileInfo('/tmp/non/existing-path');
 
         $virtualFileInfo->fromArray(
             [
@@ -158,7 +158,7 @@ class SplFileInfoSimpleTest extends TestCase
                 'file' => false,
                 'dir' => true,
                 'link' => false,
-                'realPath' => '/non/existing-path',
+                'realPath' => '/tmp/non/existing-path',
                 'linkTarget' => 'bar',
             ]
         );
