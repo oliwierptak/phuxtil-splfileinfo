@@ -288,3 +288,8 @@ dir: -1
 link: -1
 linkTarget: -1
 ```
+
+
+#### TDD
+
+See [tests](https://github.com/oliwierptak/phuxtil-splfileinfo/blob/master/tests/Functional/SplFileInfo/SplFileInfoSimpleTest.php) for more examples.
