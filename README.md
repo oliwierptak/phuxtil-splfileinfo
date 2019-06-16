@@ -39,7 +39,7 @@ $virtualInfo->isExecutable(); # -1
 // virtual resource has been created 
 @mkdir($path);
 
-// refresh virutal file info
+// update virutal file info
 $virtualInfo->fromSplFileInfo(new SplFileInfo($path));
 ```
 
@@ -264,7 +264,7 @@ All values besides `PathInfo` are set to `-1` by default.
 $info = new VirtualSplFileInfo('/tmp/not-yet/existing-path');
 ```
 
-```
+```php
 [
     path: "/tmp/not-yet"
     filename: "existing-path"
