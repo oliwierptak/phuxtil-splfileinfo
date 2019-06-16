@@ -115,65 +115,11 @@ $splInfo = new SplFileInfo($path);
 $virtualInfo->fromSplFileInfo($splInfo);
 ```
 
-```
-$virtualInfo = Phuxtil\SplFileInfo\VirtualSplFileInfo {
-  path: "/tmp/not-yet"
-  filename: "existing-path"
-  basename: "existing-path"
-  pathname: "/tmp/not-yet/existing-path"
-  extension: ""
-  realPath: "/tmp/not-yet/existing-path"
-  aTime: 2019-06-15 22:07:47
-  mTime: 2019-06-15 22:07:47
-  cTime: 2019-06-15 22:07:47
-  inode: 10248205
-  size: 64
-  perms: 040755
-  owner: 0
-  group: 0
-  type: "dir"
-  writable: true
-  readable: true
-  executable: true
-  file: false
-  dir: true
-  link: false
-  linkTarget: -1
-}
-```
-
 #### toArray(): array 
 
 ``` php
 $info = new VirtualSplFileInfo('/tmp/not-yet/existing-path');
 $data = $info->toArray();
-```
-
-```php
-[
-  "path" => "/tmp/not-yet"
-  "filename" => "existing-path"
-  "basename" => "existing-path"
-  "pathname" => "/tmp/not-yet/existing-path"
-  "extension" => ""
-  "realPath" => "/tmp/not-yet/existing-path"
-  "aTime" => -1
-  "mTime" => -1
-  "cTime" => -1
-  "inode" => -1
-  "size" => -1
-  "perms" => -1
-  "owner" => -1
-  "group" => -1
-  "type" => "virtual"
-  "linkTarget" => -1
-  "writable" => -1
-  "readable" => -1
-  "executable" => -1
-  "file" => -1
-  "dir" => -1
-  "link" => -1
-]
 ```
 
 #### fromArray(array $data)
@@ -199,33 +145,6 @@ $info->fromArray(
         'link' => false,
     ]
 );
-```
-
-```php
-[
-  "path" => "/tmp/not-yet"
-  "filename" => "existing-path"
-  "basename" => "existing-path"
-  "pathname" => "/tmp/not-yet/existing-path"
-  "extension" => ""
-  "realPath" => "/tmp/not-yet/existing-path"
-  "aTime" => 123
-  "mTime" => 456
-  "cTime" => 789
-  "inode" => 222
-  "size" => 333
-  "perms" => 0755
-  "owner" => 1
-  "group" => 1
-  "type" => "dir"
-  "linkTarget" => -1
-  "writable" => dir
-  "readable" => dir
-  "executable" => dir
-  "file" => false
-  "dir" => true
-  "link" => false
-]
 ```
 
 
