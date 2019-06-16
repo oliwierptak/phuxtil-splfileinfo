@@ -167,8 +167,8 @@ $info->fromArray(
 
 
 #### Setter support
-You can use setters for all properties besides `PathInfo`, which is resolved form the filename by default in `\SplFileInfo`.
-The file does not have to exist for those methods to work.
+You can use setters for all properties besides `PathInfo`, which is resolved by default in `\SplFileInfo`.
+The resource does not have to yet exist for those methods to work.
 
 Properties with setters:
 
