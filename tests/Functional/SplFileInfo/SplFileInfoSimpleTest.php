@@ -63,6 +63,9 @@ class SplFileInfoSimpleTest extends TestCase
 
         $this->comparePaths($fileInfo, $virtualFileInfo);
 
+        $virtualFileInfo->setRealPath('/tmp/invalid.foo');
+        $this->assertEquals('/tmp/invalid.foo', $virtualFileInfo->getRealPath());
+
         $virtualFileInfo->setFile(true);
         $this->assertTrue($virtualFileInfo->isFile());
         $virtualFileInfo->setDir(true);
@@ -202,7 +205,7 @@ class SplFileInfoSimpleTest extends TestCase
         $virtualFileInfo = new VirtualSplFileInfo(static::TEST_FILE_VIRTUAL);
 
         $this->comparePaths($fileInfo, $virtualFileInfo);
-        $this->comparePaths($fileInfo, $virtualFileInfo->getFileInfo(VirtualSplFileInfo::class));
+        $this->comparePaths($fileInfo, $virtualFileInfo->getFileInfo());
         $this->assertVirtualProperties($virtualFileInfo->getFileInfo(VirtualSplFileInfo::class));
     }
 
