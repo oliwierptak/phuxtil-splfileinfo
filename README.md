@@ -122,13 +122,15 @@ _Note: isReadable(), isFile(),... etc, can return true, even if the resource doe
 #### fromSplFileInfo(\SplFileInfo $info) 
 
 ``` php
-$path = '/tmp/not-yet/existing-path';
+$path = '/tmp/not-yet/existing-file.txt';
 $virtualInfo = new VirtualSplFileInfo($path);
+// ... do stuff
 
-@mkdir($path, 0777, true);
+// create resource later
+file_put_contents($path, 'Lorem Ipsum');
 
-$splInfo = new SplFileInfo($path);
-$virtualInfo->fromSplFileInfo($splInfo);
+// update virtual file info 
+$virtualInfo->fromSplFileInfo(new SplFileInfo($path));
 ```
 
 #### toArray(): array 
