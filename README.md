@@ -1,16 +1,10 @@
 # phuxtil-splfileinfo
 
 `VirtualSplFileInfo` allows to use non existing (virtual) paths and still be able to perform 
-all file operations like `getSize()`, `isFile()`, `getOnwer()`, and get predefined results.
+all file operations like `getSize()`, `isFile()`, `getOnwer()`, etc, and get predefined results.
  
 It has setters support, and helper methods like `isVirtual()`, `toArray()`,  `fromArray()`, `fromSplFileInfo()`.
-
-Possible use cases:
-
- - Legacy code using `\SplFileInfo` classes with hardcoded paths that only exist on production.
- - Testing / mocking / TDD
  
-
 
 ### Installation
 
@@ -19,29 +13,46 @@ composer require phuxtil/splfileinfo
 ```
 
 ### Usage
-You can turn virtual file into real file at any time, for example.
+
+##### Create virtual file info.
 
 ```php
 $path = '/tmp/not-yet/existing-path';
 $virtualInfo = new VirtualSplFileInfo($path);
+```
 
-// only PathInfo data is set at this point, the resource does not exist
+
+Only PathInfo data is set at this point.
+
+```php
 $virtualInfo->getPathname();  # /tmp/not-yet/existing-path
 $virtualInfo->getPath();      # /tmp/not-yet
 ...
-
-// the rest of the properties is set to -1 by default
 $virtualInfo->isDir();        # -1
 $virtualInfo->getSize();      # -1
 $virtualInfo->isExecutable(); # -1
-...
+```
 
-// virtual resource has been created 
+_Note: The rest of the properties is set to -1 by default._
+
+
+At any time you can check if resource is virtual or not.
+
+```php
+$virtualInfo->getType();      # virtual
+$virtualInfo->isVirtual();    # true
+```
+
+
+#####  Update virtual file info with real resource data
+
+```php 
 @mkdir($path);
 
-// update virutal file info
 $virtualInfo->fromSplFileInfo(new SplFileInfo($path));
 ```
+
+`VirtualFileInfo` vs `\SplFileInfo`.
 
 ```
 $splInfo = SplFileInfo {
@@ -90,7 +101,6 @@ $virtualInfo = Phuxtil\SplFileInfo\VirtualSplFileInfo {
   file: false
   dir: true
   link: false
-  linkTarget: -1
 }
 ```
 
