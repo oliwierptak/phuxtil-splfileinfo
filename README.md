@@ -14,7 +14,7 @@ composer require phuxtil/splfileinfo
 
 ### Usage
 
-##### Create virtual file info.
+#### Create virtual file info.
 
 ```php
 $path = '/tmp/not-yet/existing-path';
@@ -48,7 +48,7 @@ $virtualInfo->isVirtual();    # true
 ```
 
 
-#####  Update virtual file info with real resource data
+####  Update virtual file info with real resource data
 
 ```php 
 @mkdir($path);
