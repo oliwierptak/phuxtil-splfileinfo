@@ -260,37 +260,6 @@ linkTarget
 #### Default values
 All values besides `PathInfo` are set to `-1` by default.
 
-```php
-$info = new VirtualSplFileInfo('/tmp/not-yet/existing-path');
-```
-
-```php
-[
-    path: "/tmp/not-yet"
-    filename: "existing-path"
-    basename: "existing-path"
-    pathname: "/tmp/not-yet/existing-path"
-    extension: ""
-    realPath: "/tmp/not-yet/existing-path"
-    aTime: -1
-    mTime: -1
-    cTime: -1
-    inode: -1
-    size: -1
-    perms: -1
-    owner: -1
-    group: -1
-    type: "virtual"
-    writable: -1
-    readable: -1
-    executable: -1
-    file: -1
-    dir: -1
-    link: -1
-    linkTarget: -1
-]
-```
-
 
 #### TDD
 
