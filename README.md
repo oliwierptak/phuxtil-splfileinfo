@@ -40,7 +40,7 @@ $virtualInfo->setPerms(0775);
 _Note: All properties besides PathInfo are set to -1 by default._
 
 
-At any time you can check if resource is virtual or not.
+#### Check if resource is virtual.
 
 ```php
 $virtualInfo->getType();      # virtual
@@ -54,6 +54,8 @@ $virtualInfo->isVirtual();    # true
 @mkdir($path);
 
 $virtualInfo->fromSplFileInfo(new SplFileInfo($path));
+
+$virtualInfo->isVirtual(); # false
 ```
 
 `VirtualFileInfo` vs `\SplFileInfo`.
