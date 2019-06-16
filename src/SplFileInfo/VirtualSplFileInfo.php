@@ -337,8 +337,16 @@ class VirtualSplFileInfo extends \SplFileInfo
         $this->file = $data['file'] ?? -1;
         $this->dir = $data['dir'] ?? -1;
         $this->link = $data['link'] ?? -1;
-        $this->realPath = $this->isLink() ? $data['realPath'] : $this->getPathname();
-        $this->linkTarget = $this->isLink() ? $data['linkTarget'] : -1;
+
+        $this->realPath = $this->getPathname();
+        if ($this->isLink() && isset($data['realPath'] )) {
+            $this->realPath = $data['realPath'];
+        }
+
+        $this->linkTarget = -1;
+        if ($this->isLink() && isset($data['linkTarget'] )) {
+            $this->linkTarget = $data['linkTarget'];
+        }
 
         return $this;
     }

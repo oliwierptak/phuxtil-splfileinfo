@@ -130,7 +130,6 @@ class SplFileInfoSimpleTest extends TestCase
         $this->assertEquals($virtualFileInfo->getOwner(), $data['owner']);
         $this->assertEquals($virtualFileInfo->getGroup(), $data['group']);
         $this->assertEquals($virtualFileInfo->getType(), $data['type']);
-        $this->assertEquals($virtualFileInfo->getRealPath(), $data['realPath']);
         $this->assertEquals($virtualFileInfo->getLinkTarget(), $data['linkTarget']);
         $this->assertEquals($virtualFileInfo->isWritable(), $data['writable']);
         $this->assertEquals($virtualFileInfo->isReadable(), $data['readable']);
@@ -160,9 +159,7 @@ class SplFileInfoSimpleTest extends TestCase
                 'executable' => true,
                 'file' => false,
                 'dir' => true,
-                'link' => false,
-                'realPath' => '/tmp/non/existing-path',
-                'linkTarget' => 'bar',
+                'link' => false
             ]
         );
 
@@ -173,7 +170,7 @@ class SplFileInfoSimpleTest extends TestCase
         $this->assertEquals($data['basename'], $virtualFileInfo->getBasename());
         $this->assertEquals($data['pathname'], $virtualFileInfo->getPathname());
         $this->assertEquals($data['extension'], $virtualFileInfo->getExtension());
-        $this->assertEquals($data['pathname'], $virtualFileInfo->getRealPath());
+        $this->assertEquals($data['realPath'], $virtualFileInfo->getRealPath());
         $this->assertEquals($data['aTime'], $virtualFileInfo->getATime());
         $this->assertEquals($data['mTime'], $virtualFileInfo->getMTime());
         $this->assertEquals($data['cTime'], $virtualFileInfo->getCTime());
@@ -183,8 +180,60 @@ class SplFileInfoSimpleTest extends TestCase
         $this->assertEquals($data['owner'], $virtualFileInfo->getOwner());
         $this->assertEquals($data['group'], $virtualFileInfo->getGroup());
         $this->assertEquals($data['type'], $virtualFileInfo->getType());
-        $this->assertEquals($data['realPath'], $virtualFileInfo->getRealPath());
         $this->assertEquals(-1, $virtualFileInfo->getLinkTarget());
+        $this->assertEquals($data['writable'], $virtualFileInfo->isWritable());
+        $this->assertEquals($data['readable'], $virtualFileInfo->isReadable());
+        $this->assertEquals($data['executable'], $virtualFileInfo->isExecutable());
+        $this->assertEquals($data['file'], $virtualFileInfo->isFile());
+        $this->assertEquals($data['dir'], $virtualFileInfo->isDir());
+        $this->assertEquals($data['link'], $virtualFileInfo->isLink());
+        $this->assertFalse($virtualFileInfo->isVirtual());
+    }
+
+    public function test_fromArray_linkTarget()
+    {
+        $virtualFileInfo = new VirtualSplFileInfo('/tmp/non/existing-path-link');
+
+        $virtualFileInfo->fromArray(
+            [
+                'aTime' => 123,
+                'mTime' => 456,
+                'cTime' => 789,
+                'inode' => 222,
+                'size' => 333,
+                'perms' => 0755,
+                'owner' => 1,
+                'group' => 2,
+                'type' => 'link',
+                'writable' => true,
+                'readable' => true,
+                'executable' => true,
+                'file' => false,
+                'dir' => false,
+                'link' => true,
+                'linkTarget' => '/tmp/non/existing-path-link',
+                'realPath' => '/tmp/non/existing-path',
+            ]
+        );
+
+        $data = $virtualFileInfo->toArray();
+
+        $this->assertEquals($data['path'], $virtualFileInfo->getPath());
+        $this->assertEquals($data['filename'], $virtualFileInfo->getFilename());
+        $this->assertEquals($data['basename'], $virtualFileInfo->getBasename());
+        $this->assertEquals($data['pathname'], $virtualFileInfo->getPathname());
+        $this->assertEquals($data['extension'], $virtualFileInfo->getExtension());
+        $this->assertEquals($data['realPath'], $virtualFileInfo->getRealPath());
+        $this->assertEquals($data['aTime'], $virtualFileInfo->getATime());
+        $this->assertEquals($data['mTime'], $virtualFileInfo->getMTime());
+        $this->assertEquals($data['cTime'], $virtualFileInfo->getCTime());
+        $this->assertEquals($data['inode'], $virtualFileInfo->getInode());
+        $this->assertEquals($data['size'], $virtualFileInfo->getSize());
+        $this->assertEquals($data['perms'], $virtualFileInfo->getPerms());
+        $this->assertEquals($data['owner'], $virtualFileInfo->getOwner());
+        $this->assertEquals($data['group'], $virtualFileInfo->getGroup());
+        $this->assertEquals($data['type'], $virtualFileInfo->getType());
+        $this->assertEquals('/tmp/non/existing-path-link', $virtualFileInfo->getLinkTarget());
         $this->assertEquals($data['writable'], $virtualFileInfo->isWritable());
         $this->assertEquals($data['readable'], $virtualFileInfo->isReadable());
         $this->assertEquals($data['executable'], $virtualFileInfo->isExecutable());
