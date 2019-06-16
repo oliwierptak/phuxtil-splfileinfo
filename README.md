@@ -28,12 +28,16 @@ Only PathInfo data is set at this point.
 $virtualInfo->getPathname();  # /tmp/not-yet/existing-path
 $virtualInfo->getPath();      # /tmp/not-yet
 ...
-$virtualInfo->isDir();        # -1
-$virtualInfo->getSize();      # -1
-$virtualInfo->isExecutable(); # -1
+```
+The rest of the data can be updated with setters.
+```php
+$virtualInfo->setSize(120);
+$virtualInfo->setATime(time());
+$virtualInfo->setPerms(0775);
+...
 ```
 
-_Note: The rest of the properties is set to -1 by default._
+_Note: All properties besides PathInfo are set to -1 by default._
 
 
 At any time you can check if resource is virtual or not.
