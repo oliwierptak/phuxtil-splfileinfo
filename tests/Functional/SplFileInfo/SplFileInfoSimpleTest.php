@@ -12,7 +12,7 @@ class SplFileInfoSimpleTest extends TestCase
     const TEST_FILE_VIRTUAL = \TESTS_FIXTURE_DIR . 'non_existing.txt';
     const TEST_FILE_LINK = \TESTS_FIXTURE_DIR . 'test_link.txt';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         @unlink(static::TEST_FILE_LINK);
         @unlink(static::TEST_FILE_VIRTUAL);

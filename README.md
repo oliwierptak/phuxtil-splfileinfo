@@ -12,6 +12,8 @@ It has setters support, and helper methods like `isVirtual()`, `toArray()`,  `fr
 composer require phuxtil/splfileinfo 
 ```
 
+_Note_: Use v1.x for compatibility with PHP v7.0.x.
+
 ### Usage
 
 #### Create virtual file info.
@@ -191,8 +193,6 @@ dir
 link
 linkTarget
 ```
-
-
 
 #### Default values
 All values besides `PathInfo` are set to `-1` by default.
